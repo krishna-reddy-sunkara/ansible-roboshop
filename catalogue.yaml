@@ -36,5 +36,5 @@
 
    - name: unziping catalogue file
      ansible.builtin.unarchive:
-       src: /tmp/catalogue.zip
+       src: unzip /tmp/catalogue.zip
        dest: /app       
