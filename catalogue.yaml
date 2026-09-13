@@ -1,0 +1,11 @@
+- name: catalogue setup
+  hosts: catalogue
+  become: yes
+  tasks:
+   - name: disabling nodejs
+     ansible.builtin.dnf:
+      name: nodejs
+     state: diable
+
+   - name: enabling nodejs
+     ansible.builtin.dnf:  
