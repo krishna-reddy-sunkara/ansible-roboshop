@@ -22,9 +22,9 @@
       system: true
       home: /app
       shell: /sbin/nologin
-      comment: roboshop system user
+      comment: "roboshop system user"
 
-    - name: create app file
+    - name: create app files
       ansible.builtin.file:      
         path: /app
         state: directory
