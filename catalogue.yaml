@@ -7,9 +7,34 @@
       name: nodejs
       state: absent
 
-   - name: enabling nodejs
-     ansible.builtin.dnf:  
-      name: nodejs:20
+   - name: enabling nodejs20
+     ansible.builtin.command: dnf module enable nodejs:20 -y
+
+   - name: install packages
+     ansible.builtin.service:
+      name: nodejs
       state: present
-      enable: yes
-      
+       
+
+   - name: creating system user
+     ansible.builtin.user:
+      name: roboshop
+      system: true
+      home: /app
+      shell: /sbin/nologin
+      comment: roboshop system user
+
+    - name: creating app directory
+      ansible.builtin.file:      
+        path: /app
+        state: directory
+
+    - name: download catalogue
+      ansible.builtin.get_url:
+       url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+       dest:  /tmp/catalogue.zip 
+
+    - name: unziping catalogue file
+      ansible.builtin.unarchive:
+       src: unzip /tmp/catalogue.zip
+       dest: /app       
