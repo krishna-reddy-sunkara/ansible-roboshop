@@ -37,6 +37,6 @@
       record: "{{ item.item }}-{{ env }}.{{ domain_name }}" # mongodb-dev.daws-92s.store
       type: A
       ttl: 1
-      value: "{{ item.instances[0].private_IP_address }}"
+      value: "{{ item.instances[0].private_ip_address }}"
       wait: true  
-    loop: "{{ ec2_output.json }}"    
+    loop: "{{ ec2_output.results }}"    
