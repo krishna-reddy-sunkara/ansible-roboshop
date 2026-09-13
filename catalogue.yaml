@@ -10,5 +10,6 @@
    - name: enabling nodejs
      ansible.builtin.dnf:  
       name: nodejs:20
-      enable: yes
       state: present
+      enable: yes
+      
