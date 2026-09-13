@@ -24,7 +24,7 @@
       shell: /sbin/nologin
       comment: roboshop system user
 
-    - name: creating app directory
+    - name: create app file
       ansible.builtin.file:      
         path: /app
         state: directory
