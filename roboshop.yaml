@@ -1,0 +1,28 @@
+- name: create ec2 instance and route53 records
+  hosts: all #no need to use inventory file
+  connection: local
+  vars:
+   sg_id: sg-0027bf26309cfab1a
+   ami_id: ami-0220d79f3f480ecf5
+   environment: dev
+   instances:
+   - mongodb
+   - catalogue 
+
+  tasks:
+  - name: to create ec2 instance
+    amazon.aws.ec2_instance:
+     instance_type: t3.micro
+     security_group: "{{ sg_id }}"
+     image_id: "{{ ami_id }}"
+     name: "{{ item }}"
+     tags:
+     Project: roboshop
+     Component: "{{ item }}"
+     Environment: "{{ environment }}"
+     name: "{{ item }}-{{ environment }}"
+    loop: "{{ instances }}"
+    register: ec2-output
+  - name: print the ec2 output
+    ansible.builtin.debug:
+     msg: "{{ ec2-output }}"  
