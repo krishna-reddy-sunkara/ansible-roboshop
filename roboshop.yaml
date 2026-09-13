@@ -4,7 +4,7 @@
   vars:
    sg_id: sg-0027bf26309cfab1a
    ami_id: ami-0220d79f3f480ecf5
-   environment: dev
+   env: dev
    instances:
    - mongodb
    - catalogue 
@@ -19,8 +19,8 @@
      tags:
      Project: roboshop
      Component: "{{ item }}"
-     Environment: "{{ environment }}"
-     name: "{{ item }}-{{ environment }}"
+     Environment: "{{ env }}"
+     name: "{{ item }}-{{ env }}"
     loop: "{{ instances }}"
     register: ec2-output
   - name: print the ec2 output
